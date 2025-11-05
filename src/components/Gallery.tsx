@@ -1,21 +1,23 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import sushiImage from "@/assets/mur-impression-sushi-restaurant.jpg";
+import pizzaImage from "@/assets/mur-impression-pizza-restaurant.jpg";
+import beauteImage from "@/assets/mur-impression-onglerie-beaute.jpg";
 
-// Placeholder images - In production, replace with real project images
 const galleryItems = [
-  { id: 1, category: "bureau", image: "/placeholder.svg", title: "Siège social moderne" },
-  { id: 2, category: "commerce", image: "/placeholder.svg", title: "Boutique de luxe" },
-  { id: 3, category: "restaurant", image: "/placeholder.svg", title: "Restaurant gastronomique" },
-  { id: 4, category: "evenement", image: "/placeholder.svg", title: "Stand événementiel" },
-  { id: 5, category: "bureau", image: "/placeholder.svg", title: "Open space créatif" },
-  { id: 6, category: "commerce", image: "/placeholder.svg", title: "Showroom automobile" },
-  { id: 7, category: "restaurant", image: "/placeholder.svg", title: "Café contemporain" },
-  { id: 8, category: "evenement", image: "/placeholder.svg", title: "Salon professionnel" },
-  { id: 9, category: "bureau", image: "/placeholder.svg", title: "Salle de réunion" },
+  { id: 1, category: "restaurant", image: sushiImage, title: "Restaurant Sushi - Impression murale réaliste" },
+  { id: 2, category: "restaurant", image: pizzaImage, title: "Pizzeria - Décor mural appétissant" },
+  { id: 3, category: "commerce", image: beauteImage, title: "Salon de beauté - Impression murale élégante" },
+  { id: 4, category: "bureau", image: "/placeholder.svg", title: "Siège social moderne" },
+  { id: 5, category: "commerce", image: "/placeholder.svg", title: "Boutique de luxe" },
+  { id: 6, category: "restaurant", image: "/placeholder.svg", title: "Restaurant gastronomique" },
+  { id: 7, category: "evenement", image: "/placeholder.svg", title: "Stand événementiel" },
+  { id: 8, category: "bureau", image: "/placeholder.svg", title: "Open space créatif" },
+  { id: 9, category: "commerce", image: "/placeholder.svg", title: "Showroom automobile" },
 ];
 
 const categories = [
@@ -62,57 +64,106 @@ export const Gallery = () => {
           </TabsList>
 
           <TabsContent value={activeCategory} className="mt-0">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredItems.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1, duration: 0.4 }}
-                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg shadow-card"
-                  onClick={() => setSelectedImage(item)}
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-overlay opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="text-center text-white">
-                      <h3 className="text-xl font-bold">{item.title}</h3>
-                      <p className="mt-2 text-sm">Cliquer pour agrandir</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <motion.div
+              className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <AnimatePresence mode="wait">
+                {filteredItems.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                    transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
+                    className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg shadow-card"
+                    onClick={() => setSelectedImage(item)}
+                    whileHover={{ y: -8 }}
+                  >
+                    <motion.img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-full w-full object-cover"
+                      whileHover={{ scale: 1.15 }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-overlay"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <motion.div
+                      className="absolute inset-0 flex items-center justify-center"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileHover={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="text-center text-white px-4">
+                        <motion.h3
+                          className="text-xl font-bold mb-2"
+                          initial={{ y: 10 }}
+                          whileHover={{ y: 0 }}
+                          transition={{ duration: 0.3, delay: 0.1 }}
+                        >
+                          {item.title}
+                        </motion.h3>
+                        <motion.p
+                          className="text-sm"
+                          initial={{ y: 10, opacity: 0 }}
+                          whileHover={{ y: 0, opacity: 1 }}
+                          transition={{ duration: 0.3, delay: 0.2 }}
+                        >
+                          Cliquer pour agrandir
+                        </motion.p>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           </TabsContent>
         </Tabs>
       </div>
 
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-5xl p-0">
-          {selectedImage && (
-            <div className="relative">
-              <img
-                src={selectedImage.image}
-                alt={selectedImage.title}
-                className="h-auto w-full"
-              />
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute right-4 top-4 bg-black/50 text-white hover:bg-black/70"
-                onClick={() => setSelectedImage(null)}
+        <DialogContent className="max-w-5xl p-0 overflow-hidden bg-transparent border-0">
+          <AnimatePresence>
+            {selectedImage && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="relative"
               >
-                <X className="h-6 w-6" />
-              </Button>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-overlay p-6 text-white">
-                <h3 className="text-2xl font-bold">{selectedImage.title}</h3>
-              </div>
-            </div>
-          )}
+                <motion.img
+                  src={selectedImage.image}
+                  alt={selectedImage.title}
+                  className="h-auto w-full rounded-lg"
+                  layoutId={`gallery-${selectedImage.id}`}
+                />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-4 top-4 bg-black/50 text-white hover:bg-black/70 backdrop-blur-sm"
+                  onClick={() => setSelectedImage(null)}
+                >
+                  <X className="h-6 w-6" />
+                </Button>
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="absolute bottom-0 left-0 right-0 bg-gradient-overlay p-6 text-white rounded-b-lg"
+                >
+                  <h3 className="text-2xl font-bold">{selectedImage.title}</h3>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </DialogContent>
       </Dialog>
     </section>

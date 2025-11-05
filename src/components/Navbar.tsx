@@ -37,11 +37,21 @@ export const Navbar = () => {
         {/* Logo */}
         <motion.a
           href="#hero"
-          className="text-2xl font-bold"
+          className="flex items-center gap-2"
           whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
         >
-          <span className="bg-gradient-accent bg-clip-text text-transparent">Wall</span>
-          <span className={isScrolled ? "text-foreground" : "text-white"}>Dream</span>
+          <motion.img
+            src="/logo.png"
+            alt="Wall Dream Logo"
+            className="h-14 w-14 object-contain"
+            initial={{ rotate: 0 }}
+            whileHover={{ rotate: 360 }}
+            transition={{ duration: 0.6 }}
+          />
+          <span className={`text-xl font-bold transition-colors ${isScrolled ? "text-foreground" : "text-white"}`}>
+            Wall Dream
+          </span>
         </motion.a>
 
         {/* Desktop Navigation */}
