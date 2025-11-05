@@ -1,0 +1,121 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const navItems = [
+  { label: "Accueil", href: "#hero" },
+  { label: "Services", href: "#services" },
+  { label: "Réalisations", href: "#gallery" },
+  { label: "Processus", href: "#process" },
+  { label: "Témoignages", href: "#testimonials" },
+  { label: "Contact", href: "#contact" },
+];
+
+export const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled ? "bg-background/95 shadow-elegant backdrop-blur-md" : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto flex items-center justify-between px-4 py-4">
+        {/* Logo */}
+        <motion.a
+          href="#hero"
+          className="text-2xl font-bold"
+          whileHover={{ scale: 1.05 }}
+        >
+          <span className="bg-gradient-accent bg-clip-text text-transparent">Wall</span>
+          <span className={isScrolled ? "text-foreground" : "text-white"}>Dream</span>
+        </motion.a>
+
+        {/* Desktop Navigation */}
+        <div className="hidden items-center gap-8 md:flex">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className={`relative text-sm font-medium transition-colors hover:text-accent ${
+                isScrolled ? "text-foreground" : "text-white"
+              }`}
+            >
+              {item.label}
+              <motion.div
+                className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 bg-accent transition-transform hover:scale-x-100"
+              />
+            </a>
+          ))}
+          <Button
+            size="sm"
+            className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-glow"
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            Devis gratuit
+          </Button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className={`md:hidden ${isScrolled ? "text-foreground" : "text-white"}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </Button>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="bg-background/98 backdrop-blur-md md:hidden"
+          >
+            <div className="container mx-auto flex flex-col gap-4 px-4 py-6">
+              {navItems.map((item, index) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="text-lg font-medium text-foreground transition-colors hover:text-accent"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+              <Button
+                className="mt-4 bg-accent text-accent-foreground hover:bg-accent/90"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                Devis gratuit
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
+  );
+};

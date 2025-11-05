@@ -1,0 +1,111 @@
+import { useState } from "react";
+import { ServiceCard } from "./ServiceCard";
+import { ServiceModal } from "./ServiceModal";
+import impactVisuel from "@/assets/service-impact-visuel.webp";
+import imageMarque from "@/assets/service-image-marque.webp";
+import effetLumineux from "@/assets/service-effet-lumineux.webp";
+import communicationSilencieuse from "@/assets/service-communication-silencieuse.webp";
+import investissementDurable from "@/assets/service-investissement-durable.webp";
+import visibiliteAccrue from "@/assets/service-visibilite-accrue.webp";
+
+const services = [
+  {
+    title: "Impact visuel immédiat",
+    description: "Créez une première impression mémorable avec des impressions murales qui captivent instantanément l'attention de vos visiteurs.",
+    fullDescription: `Nos solutions d'impression murale grand format transforment vos espaces en véritables expériences visuelles. Chaque projet est conçu pour maximiser l'impact dès le premier regard.
+
+Nous utilisons des technologies d'impression de pointe pour garantir des couleurs éclatantes et une netteté parfaite, même sur de très grandes surfaces. Que ce soit pour votre hall d'entrée, votre salle de réunion ou votre showroom, nous créons des décors qui marquent les esprits.
+
+Notre expertise couvre tous les secteurs : bureaux d'entreprise, commerces de détail, restaurants, hôtels, et espaces événementiels. Chaque installation est réalisée avec le plus grand soin pour assurer un résultat impeccable.`,
+    image: impactVisuel,
+  },
+  {
+    title: "Image de marque forte",
+    description: "Renforcez votre identité visuelle et véhiculez vos valeurs d'entreprise à travers des installations murales personnalisées et cohérentes.",
+    fullDescription: `Votre identité de marque mérite d'être mise en valeur de façon exceptionnelle. Nos impressions murales deviennent des ambassadeurs permanents de votre entreprise, communiquant vos valeurs et votre histoire à chaque instant.
+
+Nous travaillons en étroite collaboration avec vous pour intégrer harmonieusement votre charte graphique, vos couleurs et vos messages clés. Chaque élément est pensé pour créer une cohérence parfaite avec votre identité globale.
+
+De la conception à l'installation, nous assurons que chaque détail reflète l'excellence de votre marque. Nos solutions s'adaptent à tous les espaces : bureaux, points de vente, espaces d'accueil, et zones de passage stratégiques.`,
+    image: imageMarque,
+  },
+  {
+    title: "Effet lumineux captivant",
+    description: "Exploitez la puissance de l'éclairage avec nos solutions rétro-éclairées qui créent des ambiances uniques et mémorables.",
+    fullDescription: `Nos impressions murales rétro-éclairées transforment vos espaces en créant des effets visuels spectaculaires. La lumière devient partie intégrante de votre décor, ajoutant profondeur et dimension à vos installations.
+
+Cette technologie permet de mettre en valeur vos visuels même dans des conditions de faible luminosité, garantissant une visibilité optimale 24h/24. L'effet lumineux crée une atmosphère sophistiquée et moderne qui ne laisse personne indifférent.
+
+Idéal pour les showrooms, boutiques de luxe, restaurants haut de gamme et espaces d'exposition, nos solutions rétro-éclairées offrent un retour sur investissement exceptionnel en attirant naturellement le regard et en créant une expérience immersive.`,
+    image: effetLumineux,
+  },
+  {
+    title: "Communication silencieuse",
+    description: "Transmettez vos messages et valeurs d'entreprise de manière subtile mais efficace, créant un environnement qui parle de lui-même.",
+    fullDescription: `La communication la plus puissante est souvent celle qui ne se remarque pas immédiatement. Nos impressions murales communiquent vos valeurs, votre culture d'entreprise et vos messages clés de façon naturelle et non intrusive.
+
+Cette approche subtile permet à vos collaborateurs et visiteurs d'assimiler progressivement votre identité et vos objectifs, créant un environnement de travail inspirant et motivant. Les messages visuels renforcent naturellement l'adhésion à votre culture d'entreprise.
+
+Particulièrement efficace dans les espaces de travail collaboratifs, les zones de détente et les couloirs, cette forme de communication crée une atmosphère cohérente qui inspire et engage sans surcharger l'espace visuel.`,
+    image: communicationSilencieuse,
+  },
+  {
+    title: "Investissement durable",
+    description: "Bénéficiez d'une solution pérenne avec des matériaux de qualité supérieure conçus pour résister à l'épreuve du temps.",
+    fullDescription: `Investir dans nos impressions murales, c'est choisir la durabilité. Nous utilisons exclusivement des matériaux de première qualité, résistants à la décoloration, à l'humidité et à l'usure quotidienne.
+
+Nos installations sont garanties pour conserver leur éclat et leur intégrité pendant de nombreuses années, même dans des environnements à fort passage. Cette longévité exceptionnelle en fait un investissement rentable sur le long terme.
+
+Les matériaux que nous utilisons sont également respectueux de l'environnement, répondant aux normes les plus strictes en matière de développement durable. Vous bénéficiez ainsi d'une solution écologique sans compromis sur la qualité ou l'esthétique.`,
+    image: investissementDurable,
+  },
+  {
+    title: "Visibilité accrue",
+    description: "Maximisez votre présence et attirez l'attention de votre cible avec des installations murales qui se démarquent de la concurrence.",
+    fullDescription: `Dans un monde saturé de messages publicitaires, nos impressions murales grand format vous permettent de vous démarquer efficacement. Leur taille imposante et leur qualité visuelle exceptionnelle garantissent une visibilité maximale.
+
+Que ce soit en façade, dans vos espaces de vente ou lors d'événements, nos installations créent un impact visuel qui génère du trafic et augmente la notoriété de votre marque. L'effet "wow" attire naturellement l'attention et encourage l'engagement.
+
+Nos solutions sont particulièrement efficaces pour les lancements de produits, les campagnes promotionnelles et le renforcement de la présence de marque. Elles créent des opportunités de communication uniques qui génèrent buzz et recommandations.`,
+    image: visibiliteAccrue,
+  },
+];
+
+export const Services = () => {
+  const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+
+  return (
+    <section id="services" className="py-24 bg-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-4xl font-bold text-foreground md:text-5xl">
+            Nos <span className="bg-gradient-accent bg-clip-text text-transparent">Services</span>
+          </h2>
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            Impression murale professionnelle : création et pose de décors grand format pour
+            entreprises et commerces.
+          </p>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => (
+            <ServiceCard
+              key={service.title}
+              {...service}
+              onClick={() => setSelectedService(service)}
+              index={index}
+            />
+          ))}
+        </div>
+      </div>
+
+      {selectedService && (
+        <ServiceModal
+          isOpen={!!selectedService}
+          onClose={() => setSelectedService(null)}
+          {...selectedService}
+        />
+      )}
+    </section>
+  );
+};

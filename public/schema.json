@@ -1,0 +1,91 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Wall Dream",
+  "description": "Impression murale professionnelle : création et pose de décors grand format pour entreprises et commerces",
+  "url": "https://walldream.ma",
+  "logo": "https://walldream.ma/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+212-522-000000",
+    "contactType": "Service client",
+    "areaServed": "MA",
+    "availableLanguage": ["fr", "ar"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Casablanca",
+    "addressCountry": "MA"
+  },
+  "sameAs": [
+    "https://www.facebook.com/walldream",
+    "https://www.instagram.com/walldream",
+    "https://www.linkedin.com/company/walldream"
+  ],
+  "service": {
+    "@type": "Service",
+    "serviceType": "Impression murale professionnelle",
+    "provider": {
+      "@type": "Organization",
+      "name": "Wall Dream"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Maroc"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services d'impression murale",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Impact visuel immédiat",
+            "description": "Créez une première impression mémorable avec des impressions murales qui captivent instantanément"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Image de marque forte",
+            "description": "Renforcez votre identité visuelle et véhiculez vos valeurs d'entreprise"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Effet lumineux captivant",
+            "description": "Solutions rétro-éclairées qui créent des ambiances uniques et mémorables"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Communication silencieuse",
+            "description": "Transmettez vos messages et valeurs de manière subtile mais efficace"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Investissement durable",
+            "description": "Matériaux de qualité supérieure conçus pour résister à l'épreuve du temps"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Visibilité accrue",
+            "description": "Maximisez votre présence et attirez l'attention de votre cible"
+          }
+        }
+      ]
+    }
+  }
+}
