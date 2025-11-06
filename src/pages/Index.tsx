@@ -8,8 +8,11 @@ import { Technology } from "@/components/Technology";
 import { Gallery } from "@/components/Gallery";
 import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
-import { ContactForm } from "@/components/ContactForm";
+import { Team } from "@/components/Team";
+import { VideoSection } from "@/components/VideoSection";
+import { ContactInfo } from "@/components/ContactInfo";
 import { Footer } from "@/components/Footer";
+import { OpeningAnimation } from "@/components/OpeningAnimation";
 import { Helmet } from "react-helmet";
 
 const Index = () => {
@@ -65,6 +68,7 @@ const Index = () => {
       </Helmet>
 
       <div className="min-h-screen">
+        <OpeningAnimation />
         <Navbar />
         <main>
           <Hero />
@@ -74,9 +78,11 @@ const Index = () => {
           <Applications />
           <Technology />
           <Gallery />
+          <Team />
+          <VideoSection />
           <Testimonials />
           <FAQ />
-          <ContactForm />
+          <ContactInfo />
         </main>
         <Footer />
       </div>

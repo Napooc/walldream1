@@ -14,21 +14,33 @@ const navItems = [
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      setIsScrolled(currentScrollY > 50);
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
     <motion.nav
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
+      animate={{ y: isVisible ? 0 : -100 }}
+      transition={{ duration: 0.3 }}
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         isScrolled ? "bg-background/95 shadow-elegant backdrop-blur-md" : "bg-transparent"
       }`}
@@ -44,7 +56,7 @@ export const Navbar = () => {
           <motion.img
             src="/logo.png"
             alt="Wall Dream Logo"
-            className="h-14 w-14 object-contain"
+            className="h-16 w-16 object-contain"
             initial={{ rotate: 0 }}
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.6 }}
