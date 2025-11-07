@@ -78,30 +78,8 @@ export const Hero = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Logo */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.8, type: "spring" }}
-        className="absolute top-24 left-1/2 -translate-x-1/2 z-10"
-      >
-        <motion.img
-          src="/logo.png"
-          alt="Wall Dream Logo"
-          className="w-32 h-32 md:w-48 md:h-48 object-contain drop-shadow-2xl"
-          animate={{
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </motion.div>
-
       {/* Content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white pt-32">
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center text-white">
         <motion.h1
           key={`title-${currentSlide}`}
           initial={{ y: 30, opacity: 0 }}

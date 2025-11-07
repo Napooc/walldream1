@@ -68,7 +68,6 @@ const Index = () => {
       </Helmet>
 
       <div className="min-h-screen">
-        <OpeningAnimation />
         <Navbar />
         <main>
           <Hero />

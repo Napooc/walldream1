@@ -82,13 +82,6 @@ export const Navbar = () => {
               />
             </a>
           ))}
-          <Button
-            size="sm"
-            className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-glow"
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-          >
-            Devis gratuit
-          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -125,15 +118,6 @@ export const Navbar = () => {
                   {item.label}
                 </motion.a>
               ))}
-              <Button
-                className="mt-4 bg-accent text-accent-foreground hover:bg-accent/90"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                Devis gratuit
-              </Button>
             </div>
           </motion.div>
         )}

@@ -99,9 +99,9 @@ export const Team = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="group relative"
+              className="group relative h-full"
             >
-              <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 shadow-elegant">
+              <div className="relative h-full overflow-hidden rounded-2xl bg-card border border-border/50 shadow-elegant flex flex-col">
                 {/* Decorative gradient overlay */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-500"
@@ -109,7 +109,7 @@ export const Team = () => {
                 />
                 
                 {/* Image container with creative clip */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-64 overflow-hidden flex-shrink-0">
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"
                     initial={false}
@@ -132,7 +132,7 @@ export const Team = () => {
                 </div>
 
                 {/* Content */}
-                <div className="relative p-6 space-y-4">
+                <div className="relative p-6 space-y-4 flex-1 flex flex-col">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -148,7 +148,7 @@ export const Team = () => {
                   </motion.div>
 
                   <motion.div
-                    className="relative"
+                    className="relative flex-1"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
