@@ -21,3 +21,26 @@ export function scrollToSection(elementId: string, offset: number = 80) {
     });
   }
 }
+
+/**
+ * Detect which country domain the user is on
+ * @returns 'france' for walldream.fr, 'suisse' for walldream.ch, or null for others
+ */
+export function getCountryFromDomain(): 'france' | 'suisse' | null {
+  if (typeof window === 'undefined') return null;
+  
+  const hostname = window.location.hostname;
+  
+  // Check for French domain
+  if (hostname.includes('walldream.fr') || hostname.includes('.fr')) {
+    return 'france';
+  }
+  
+  // Check for Swiss domain
+  if (hostname.includes('walldream.ch') || hostname.includes('.ch')) {
+    return 'suisse';
+  }
+  
+  // For development/preview environments, default to showing both
+  return null;
+}

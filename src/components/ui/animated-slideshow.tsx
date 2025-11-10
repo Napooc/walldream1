@@ -154,6 +154,18 @@ export const HoverSliderImage = React.forwardRef<
   React.ComponentProps<"img"> & HoverSliderImageProps
 >(({ index, imageUrl, children, className, ...props }, ref) => {
   const { activeSlide } = useHoverSliderContext()
+  
+  // Exclude React event handlers that conflict with Framer Motion
+  const { 
+    onAnimationStart, 
+    onAnimationEnd, 
+    onAnimationIteration,
+    onDragStart,
+    onDragEnd,
+    onDrag,
+    ...imgProps 
+  } = props
+  
   return (
     <motion.img
       className={cn("inline-block align-middle", className)}
@@ -162,7 +174,7 @@ export const HoverSliderImage = React.forwardRef<
       animate={activeSlide === index ? "visible" : "hidden"}
       ref={ref}
       src={imageUrl}
-      {...props}
+      {...imgProps}
     />
   )
 })

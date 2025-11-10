@@ -9,17 +9,20 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { getCountryFromDomain } from "@/lib/utils";
 
 export const ContactInfo = () => {
   const [showWhatsAppDialog, setShowWhatsAppDialog] = useState(false);
+  const country = getCountryFromDomain();
 
-  const contactItems = [
+  const allContactItems = [
     {
       icon: Mail,
       label: "Email",
       value: "walldream2025@gmail.com",
       href: "mailto:walldream2025@gmail.com",
       color: "from-blue-500 to-blue-600",
+      country: null,
     },
     {
       icon: Phone,
@@ -27,6 +30,7 @@ export const ContactInfo = () => {
       value: "07 74 59 86 27",
       href: "tel:0774598627",
       color: "from-green-500 to-emerald-600",
+      country: 'france' as const,
     },
     {
       icon: Phone,
@@ -34,16 +38,33 @@ export const ContactInfo = () => {
       value: "+41 77 808 32 70",
       href: "tel:+41778083270",
       color: "from-purple-500 to-purple-600",
+      country: 'suisse' as const,
     },
   ];
 
-  const handleWhatsAppClick = (country: "france" | "suisse") => {
+  const contactItems = allContactItems.filter(
+    item => !item.country || !country || item.country === country
+  );
+
+  const handleWhatsAppClick = (selectedCountry: "france" | "suisse") => {
     const numbers = {
       france: "33774598627",
       suisse: "41778083270",
     };
-    window.open(`https://wa.me/${numbers[country]}`, "_blank");
+    window.open(`https://wa.me/${numbers[selectedCountry]}`, "_blank");
     setShowWhatsAppDialog(false);
+  };
+
+  const handleWhatsAppButtonClick = () => {
+    if (country) {
+      const numbers = {
+        france: "33774598627",
+        suisse: "41778083270",
+      };
+      window.open(`https://wa.me/${numbers[country]}`, "_blank");
+    } else {
+      setShowWhatsAppDialog(true);
+    }
   };
 
   return (
@@ -89,7 +110,7 @@ export const ContactInfo = () => {
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className={`grid grid-cols-1 ${contactItems.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-8 max-w-6xl mx-auto`}>
             {contactItems.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -141,7 +162,7 @@ export const ContactInfo = () => {
         transition={{ delay: 0.5, duration: 0.5, type: "spring" }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setShowWhatsAppDialog(true)}
+        onClick={handleWhatsAppButtonClick}
         className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-[#25D366] rounded-full shadow-2xl flex items-center justify-center group"
         aria-label="Ouvrir WhatsApp"
       >
@@ -159,8 +180,9 @@ export const ContactInfo = () => {
         <MessageCircle className="w-8 h-8 text-white relative z-10" />
       </motion.button>
 
-      {/* WhatsApp Country Selection Dialog */}
-      <Dialog open={showWhatsAppDialog} onOpenChange={setShowWhatsAppDialog}>
+      {/* WhatsApp Country Selection Dialog - Only show if not on a specific domain */}
+      {!country && (
+        <Dialog open={showWhatsAppDialog} onOpenChange={setShowWhatsAppDialog}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-center">
@@ -200,6 +222,7 @@ export const ContactInfo = () => {
           </div>
         </DialogContent>
       </Dialog>
+      )}
     </>
   );
 };
