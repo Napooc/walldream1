@@ -19,9 +19,6 @@ const CGV = () => {
       title: "Informations Légales",
       content: `Wall Dream France
 Spécialiste de l'impression murale professionnelle
-SIRET: [À compléter]
-TVA Intracommunautaire: [À compléter]
-Siège social: [Adresse à compléter]
 Email: walldream2025@gmail.com
 Téléphone: 07 74 59 86 27`
     },
@@ -180,10 +177,10 @@ Les présentes CGV sont régies par le droit français.
 En cas de litige, nous privilégions une résolution amiable. Le Client peut nous contacter à walldream2025@gmail.com pour toute réclamation.
 
 9.3 Médiation
-Conformément à l'article L.612-1 du Code de la consommation, nous proposons un dispositif de médiation : Médiateur de la consommation - [À compléter]
+Conformément à l'article L.612-1 du Code de la consommation, nous proposons un dispositif de médiation de la consommation pour faciliter le règlement amiable des litiges.
 
 9.4 Juridiction Compétente
-À défaut d'accord amiable, compétence exclusive est attribuée aux tribunaux de [Ville à compléter], nonobstant pluralité de défendeurs ou appel en garantie.`
+À défaut d'accord amiable, compétence exclusive est attribuée aux tribunaux français compétents, nonobstant pluralité de défendeurs ou appel en garantie.`
       }
     ]
   };
@@ -195,9 +192,6 @@ Conformément à l'article L.612-1 du Code de la consommation, nous proposons un
       title: "Informations Légales",
       content: `Wall Dream Suisse
 Spécialiste de l'impression murale professionnelle
-N° IDE: [À compléter]
-N° TVA: [À compléter]
-Siège social: [Adresse à compléter]
 Email: walldream2025@gmail.com
 Téléphone: +41 77 808 32 70`
     },
@@ -359,7 +353,7 @@ En cas de litige, nous privilégions une résolution amiable. Le Client peut nou
 En cas de différend, les parties peuvent recourir à une procédure de médiation avant toute action judiciaire.
 
 9.4 For Juridique
-Le for juridique exclusif est [Ville à compléter, Suisse], sous réserve de recours au Tribunal fédéral.`
+Le for juridique exclusif est celui du siège de Wall Dream Suisse, sous réserve de recours au Tribunal fédéral conformément au droit suisse.`
       }
     ]
   };
