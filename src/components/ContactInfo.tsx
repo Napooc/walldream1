@@ -28,7 +28,7 @@ export const ContactInfo = () => {
       icon: Phone,
       label: "France",
       value: "07 74 59 86 27",
-      href: "tel:0774598627",
+      href: "https://wa.me/33774598627",
       color: "from-green-500 to-emerald-600",
       country: 'france' as const,
     },
@@ -36,7 +36,7 @@ export const ContactInfo = () => {
       icon: Phone,
       label: "Suisse",
       value: "+41 77 808 32 70",
-      href: "tel:+41778083270",
+      href: "https://wa.me/41778083270",
       color: "from-purple-500 to-purple-600",
       country: 'suisse' as const,
     },
@@ -117,6 +117,8 @@ export const ContactInfo = () => {
                 <motion.a
                   key={item.label}
                   href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

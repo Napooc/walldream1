@@ -130,14 +130,14 @@ export const ContactForm = () => {
                     icon: Phone,
                     title: "Téléphone France",
                     content: "07 74 59 86 27",
-                    href: "tel:+33774598627",
+                    href: "https://wa.me/33774598627",
                     delay: 0.3,
                   },
                   {
                     icon: Phone,
                     title: "Téléphone Suisse",
                     content: "+41 77 808 32 70",
-                    href: "tel:+41778083270",
+                    href: "https://wa.me/41778083270",
                     delay: 0.35,
                   },
                   {
@@ -176,6 +176,8 @@ export const ContactForm = () => {
                       {item.href ? (
                         <a
                           href={item.href}
+                          target={item.href.startsWith('http') ? '_blank' : undefined}
+                          rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                           className="text-muted-foreground hover:text-accent transition-colors"
                         >
                           {item.content}
