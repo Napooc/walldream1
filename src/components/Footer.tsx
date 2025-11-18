@@ -134,6 +134,12 @@ export const Footer = () => {
               >
                 Contact
               </a>
+              <a
+                href="/cgv"
+                className="text-gray-600 whitespace-nowrap font-medium hover:text-accent transition-colors"
+              >
+                CGV
+              </a>
             </div>
           </div>
 
